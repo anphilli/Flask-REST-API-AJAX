@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../static/jquery-2.1.4.js" ></script>
+    <title></title>
+</head>
+<body>
+
+    <div>
+        <form id="stateSearch">
+            <label for="name"> State Name</label><input type="text" id ="name">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+    <div id="results"></div>
+    <script type="text/javascript">
+
+        var url = 'http://127.0.0.1:8081/';
+
+        $('#stateSearch').submit(function(evt){
+            evt.preventDefault();
+            var name = $('#name').val();
+            if (name.length > 0)
+                $.ajax({url: url+name,
+                dataType: 'json',
+                success: function(results){
+                    $('#results').append('<p>' + name + '\'s capital is ' + results.capital +'.</p>') }
+
+                });
+        });
+
+
+    </script>
+
+
+</body>
+</html>
